@@ -1,7 +1,7 @@
 import type { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
 import "@openzeppelin/hardhat-upgrades";
-import "@nomicfoundation/hardhat-ethers";
+import "@nomicfoundation/hardhat-viem";
 
 const config: HardhatUserConfig = {
   defaultNetwork: "amoy",
