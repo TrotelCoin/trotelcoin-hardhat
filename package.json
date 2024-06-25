@@ -4,10 +4,16 @@
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
+  "scripts": {
+    "compile": "",
+    "test": "",
+    "deploy": ""
+  },
   "dependencies": {},
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.6",
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomicfoundation/hardhat-verify": "^2.0.8",
     "@openzeppelin/hardhat-upgrades": "^3.2.0",
     "@types/bun": "latest",
     "ethers": "^6.13.1",
