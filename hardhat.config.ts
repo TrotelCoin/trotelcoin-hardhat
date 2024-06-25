@@ -1,5 +1,7 @@
 import type { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
+import "@openzeppelin/hardhat-upgrades";
+import "@nomicfoundation/hardhat-ethers";
 
 const config: HardhatUserConfig = {
   defaultNetwork: "amoy",
@@ -27,8 +29,7 @@ const config: HardhatUserConfig = {
     ],
   },
   networks: {
-    hardhat: {
-    },
+    hardhat: {},
     polygon: {
       url: "https://polygon-rpc.com",
       accounts: [process.env.PRIVATE_KEY as string],
