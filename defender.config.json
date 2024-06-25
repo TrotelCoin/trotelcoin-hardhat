@@ -1,0 +1,10 @@
+{
+    "contract_inspector": {
+        "enabled": true,
+        "scan_directories": ["lib/forge-std/src", "test", "contracts", "lib/forge-std/test"],
+        "exclude_rules": ["naming-convention", "unusued-state"]
+    },
+    "dependency_checker": {
+        "enabled": true
+    }
+}

@@ -6,7 +6,6 @@ import "@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts-upgradeable/proxy/utils/UUPSUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
-import "@openzeppelin/contracts-upgradeable/utils/math/SafeMathUpgradeable.sol";
 
 contract TrotelCoinShop is
     Initializable,
@@ -14,8 +13,6 @@ contract TrotelCoinShop is
     AccessControlUpgradeable,
     OwnableUpgradeable
 {
-    using SafeMathUpgradeable for uint256;
-
     bytes32 public constant UPGRADER_ROLE = keccak256("UPGRADER_ROLE");
 
     address public daoAddress;
@@ -204,15 +201,15 @@ contract TrotelCoinShop is
         require(_quantity > 0, "Invalid quantity");
         require(item.price > 0, "Item not found");
 
-        uint256 totalAmount = item.price.mul(_quantity);
+        uint256 totalAmount = item.price * _quantity;
         uint256 discountAmount = 0;
 
         if (_quantity > 1 && item.discount > 0) {
-            discountAmount = item.discount.mul(_quantity.sub(1));
-            totalAmount = totalAmount.sub(discountAmount);
+            discountAmount = item.discount * _quantity - 1;
+            totalAmount = totalAmount - discountAmount;
         }
 
-        uint256 feeAmount = totalAmount.mul(feePercentage).div(100);
+        uint256 feeAmount = totalAmount * feePercentage / 100;
 
         require(
             tokenFee.transferFrom(msg.sender, address(this), totalAmount),
@@ -223,10 +220,10 @@ contract TrotelCoinShop is
             "Transfer to DAO failed"
         );
 
-        totalAmount = totalAmount.sub(feeAmount);
+        totalAmount = totalAmount - feeAmount;
         tokenFee.burn(totalAmount);
 
-        inventory[msg.sender][_itemId] = inventory[msg.sender][_itemId].add(_quantity);
+        inventory[msg.sender][_itemId] = inventory[msg.sender][_itemId] + _quantity;
 
         emit ItemBuyed(_itemId, _quantity, totalAmount);
     }
@@ -235,7 +232,7 @@ contract TrotelCoinShop is
         require(_itemId > 0 && _itemId <= totalItems, "Invalid item id");
         require(inventory[msg.sender][_itemId] > 0, "Item not found in inventory");
 
-        inventory[msg.sender][_itemId] = inventory[msg.sender][_itemId].sub(1);
+        inventory[msg.sender][_itemId] -= inventory[msg.sender][_itemId];
 
         emit ItemUsed(_itemId, msg.sender);
     }

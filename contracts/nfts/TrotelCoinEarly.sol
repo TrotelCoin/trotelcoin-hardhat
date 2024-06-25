@@ -13,7 +13,7 @@ contract TrotelCoinEarlyNFT is ERC721, Ownable {
 
     event NFTMinted(address indexed to, uint256 tokenId);
 
-    constructor() ERC721("TrotelCoin Early", "TCEARLY") {
+    constructor() ERC721("TrotelCoin Early", "TCEARLY") Ownable(msg.sender) {
         defaultMinter = msg.sender;
         minters[msg.sender] = true;
     }

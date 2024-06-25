@@ -4,7 +4,7 @@ pragma solidity ^0.8.12;
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "../token/TrotelCoinV2.sol";
 
-contract TrotelCoinStakingV2Test is AccessControl {
+contract TrotelCoinStakingV2 is AccessControl {
     struct UserStaking {
         uint256 totalAmount;
         uint256 startTime;
@@ -32,8 +32,7 @@ contract TrotelCoinStakingV2Test is AccessControl {
         182 days,
         365 days,
         730 days,
-        1460 days,
-        5 minutes  // Added for testing purposes
+        1460 days
     ];
 
     uint256 public multiplierVotingPower;
@@ -54,7 +53,6 @@ contract TrotelCoinStakingV2Test is AccessControl {
         rewards[365 days] = Reward(15, true);
         rewards[730 days] = Reward(20, true);
         rewards[1460 days] = Reward(30, true);
-        rewards[5 minutes] = Reward(0, true);  // Set APR for 5 minutes duration, change as needed
 
         multiplierVotingPower = 2;
     }
