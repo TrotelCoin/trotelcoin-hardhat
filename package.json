@@ -11,12 +11,12 @@
     "verify": "bun run hardhat run scripts/verify.ts --show-stack-traces"
   },
   "dependencies": {
+    "@nomicfoundation/hardhat-toolbox-viem": "^3.0.0",
     "@nomicfoundation/hardhat-viem": "^2.0.2",
     "@openzeppelin/contracts": "^5.0.2",
     "viem": "^2.16.2"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.8",
     "@openzeppelin/contracts-upgradeable": "5.0.0",
     "@openzeppelin/hardhat-upgrades": "^3.2.0",
